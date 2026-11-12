@@ -3,5 +3,5 @@
   "title": "Project Consent (Set 1)",
   "icon": "{{BASE_URL}}/shared/favicon-project.svg",
   "description": "Project extension that requests access token permission.",
-  "extensionType": ["Project"]
+  "extensionType": ["project"]
 }

@@ -3,5 +3,5 @@
   "title": "Viewer Consent (Set 2)",
   "icon": "{{BASE_URL}}/shared/favicon-viewer.svg",
   "description": "3D viewer extension that requests access token permission.",
-  "extensionType": ["3DViewer"]
+  "extensionType": ["3dviewer"]
 }

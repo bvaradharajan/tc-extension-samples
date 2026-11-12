@@ -4,10 +4,10 @@ Eight static Trimble Connect extensions for testing custom manifests and access 
 
 | Folder | extensionType | Calls `requestPermission("accesstoken")` |
 | --- | --- | --- |
-| `set1/viewer-basic`, `set2/viewer-basic` | `3DViewer` | no |
-| `set1/viewer-consent`, `set2/viewer-consent` | `3DViewer` | yes, automatically when the viewer panel is visible |
-| `set1/project-basic`, `set2/project-basic` | `Project` | no |
-| `set1/project-consent`, `set2/project-consent` | `Project` | yes, automatically when opened from project navigation |
+| `set1/viewer-basic`, `set2/viewer-basic` | `3dviewer` | no |
+| `set1/viewer-consent`, `set2/viewer-consent` | `3dviewer` | yes, automatically when the viewer panel is visible |
+| `set1/project-basic`, `set2/project-basic` | `project` | no |
+| `set1/project-consent`, `set2/project-consent` | `project` | yes, automatically when opened from project navigation |
 
 Every page has a **Token scope** section. It decodes the JWT payload of any access token the page receives and shows `scope` (or `scp`), `aud`, `azp`, `sub`, `iss`, `iat` and `exp`. The claims are also logged to the browser console. A token can arrive from `requestPermission`, from `getPermission`, or from an `extension.accessToken` event. Basic pages never call `requestPermission` or `getPermission`, because in tcweb both can open the consent dialog. They only show a scope if the host pushes a token on its own.
 
