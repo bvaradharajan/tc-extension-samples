@@ -1,0 +1,7 @@
+{
+  "url": "{{BASE_URL}}/set1/project-consent/index.html",
+  "title": "Project Consent (Set 1)",
+  "icon": "{{BASE_URL}}/shared/favicon-project.svg",
+  "description": "Project extension that requests access token permission.",
+  "extensionType": ["Project"]
+}

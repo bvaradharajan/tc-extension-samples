@@ -1,0 +1,96 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 1.25rem;
+  line-height: 1.5;
+  max-width: 40rem;
+  background: Canvas;
+  color: CanvasText;
+}
+
+h1 {
+  font-size: 1.125rem;
+  margin: 0 0 0.75rem;
+}
+
+h2 {
+  font-size: 0.9375rem;
+  margin: 1.25rem 0 0.25rem;
+}
+
+p,
+li {
+  margin: 0.35rem 0;
+  font-size: 0.9375rem;
+}
+
+.muted {
+  opacity: 0.75;
+  font-size: 0.875rem;
+}
+
+.ok {
+  color: #006638;
+}
+
+.warn {
+  color: #8a6116;
+}
+
+.error {
+  color: #bf0d3e;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(127, 127, 127, 0.18);
+  margin-right: 0.35rem;
+}
+
+button {
+  margin: 1rem 0.75rem 0 0;
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+pre {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  background: rgba(127, 127, 127, 0.12);
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.8125rem;
+  max-height: 14rem;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.25);
+  vertical-align: top;
+}
+
+code {
+  word-break: break-all;
+}

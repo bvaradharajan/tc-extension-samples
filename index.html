@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trimble Connect sample extensions</title>
+    <link rel="icon" type="image/svg+xml" href="./shared/favicon-project.svg" />
+    <link rel="stylesheet" href="./shared/styles.css" />
+    <style>
+      body {
+        max-width: 64rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Trimble Connect sample extensions</h1>
+    <p class="muted">
+      Copy a manifest URL into Trimble Connect: Project Settings → Apps &amp; Capabilities → Add custom capability.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Set</th>
+          <th>Type</th>
+          <th>requestPermission</th>
+          <th>Manifest URL</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+
+    <script>
+      const extensions = [
+        ["set1", "viewer-basic", "3D viewer", "no"],
+        ["set1", "viewer-consent", "3D viewer", "yes"],
+        ["set1", "project-basic", "Project", "no"],
+        ["set1", "project-consent", "Project", "yes"],
+        ["set2", "viewer-basic", "3D viewer", "no"],
+        ["set2", "viewer-consent", "3D viewer", "yes"],
+        ["set2", "project-basic", "Project", "no"],
+        ["set2", "project-consent", "Project", "yes"],
+      ];
+
+      const rows = document.getElementById("rows");
+      for (const [set, folder, type, permission] of extensions) {
+        const manifestUrl = new URL(`./${set}/${folder}/manifest.json`, window.location.href).href;
+        const row = document.createElement("tr");
+        [set === "set1" ? "Set 1" : "Set 2", type, permission].forEach((value) => {
+          const cell = document.createElement("td");
+          cell.textContent = value;
+          row.appendChild(cell);
+        });
+
+        const urlCell = document.createElement("td");
+        const link = document.createElement("a");
+        link.href = manifestUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = manifestUrl;
+        const code = document.createElement("code");
+        code.appendChild(link);
+        urlCell.appendChild(code);
+        row.appendChild(urlCell);
+
+        const copyCell = document.createElement("td");
+        const copyBtn = document.createElement("button");
+        copyBtn.type = "button";
+        copyBtn.style.margin = "0";
+        copyBtn.textContent = "Copy";
+        copyBtn.addEventListener("click", async () => {
+          await navigator.clipboard.writeText(manifestUrl);
+          copyBtn.textContent = "Copied";
+          setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
+        });
+        copyCell.appendChild(copyBtn);
+        row.appendChild(copyCell);
+
+        rows.appendChild(row);
+      }
+    </script>
+  </body>
+</html>

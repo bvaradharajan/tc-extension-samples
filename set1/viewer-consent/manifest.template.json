@@ -1,0 +1,7 @@
+{
+  "url": "{{BASE_URL}}/set1/viewer-consent/index.html",
+  "title": "Viewer Consent (Set 1)",
+  "icon": "{{BASE_URL}}/shared/favicon-viewer.svg",
+  "description": "3D viewer extension that requests access token permission.",
+  "extensionType": ["3DViewer"]
+}

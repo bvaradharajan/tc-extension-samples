@@ -1,0 +1,7 @@
+{
+  "url": "{{BASE_URL}}/set2/viewer-basic/index.html",
+  "title": "Viewer Basic (Set 2)",
+  "icon": "{{BASE_URL}}/shared/favicon-viewer.svg",
+  "description": "3D viewer extension that does not request access token permission.",
+  "extensionType": ["3DViewer"]
+}

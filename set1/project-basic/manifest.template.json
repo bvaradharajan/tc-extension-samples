@@ -1,0 +1,7 @@
+{
+  "url": "{{BASE_URL}}/set1/project-basic/index.html",
+  "title": "Project Basic (Set 1)",
+  "icon": "{{BASE_URL}}/shared/favicon-project.svg",
+  "description": "Project extension that does not request access token permission.",
+  "extensionType": ["Project"]
+}
