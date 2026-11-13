@@ -30,6 +30,18 @@
       <tbody id="rows"></tbody>
     </table>
 
+    <h2>Registered App IDs</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>App ID</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="app-id-rows"></tbody>
+    </table>
+
     <script>
       const extensions = [
         ["set1", "viewer-basic", "3D viewer", "no"],
@@ -77,6 +89,43 @@
         row.appendChild(copyCell);
 
         rows.appendChild(row);
+      }
+
+      const appIds = [
+        ["Project Consent Set 2", "5e5fa495-6748-4e23-ae10-9e5bd74a873c"],
+        ["3d Viewer Consent Set 2", "a09f38bc-4aef-46cf-9739-6f62582a459c"],
+        ["External3DViewer", "dc25f306-eda7-41be-a76b-167be4a9d7cd"],
+        ["appsandcapabilities1 Project", "93ce70f5-26f1-45d2-b857-52a65e96551b"],
+      ];
+
+      const appIdRows = document.getElementById("app-id-rows");
+      for (const [name, appId] of appIds) {
+        const row = document.createElement("tr");
+
+        const nameCell = document.createElement("td");
+        nameCell.textContent = name;
+        row.appendChild(nameCell);
+
+        const idCell = document.createElement("td");
+        const code = document.createElement("code");
+        code.textContent = appId;
+        idCell.appendChild(code);
+        row.appendChild(idCell);
+
+        const copyCell = document.createElement("td");
+        const copyBtn = document.createElement("button");
+        copyBtn.type = "button";
+        copyBtn.style.margin = "0";
+        copyBtn.textContent = "Copy";
+        copyBtn.addEventListener("click", async () => {
+          await navigator.clipboard.writeText(appId);
+          copyBtn.textContent = "Copied";
+          setTimeout(() => (copyBtn.textContent = "Copy"), 1500);
+        });
+        copyCell.appendChild(copyBtn);
+        row.appendChild(copyCell);
+
+        appIdRows.appendChild(row);
       }
     </script>
   </body>
