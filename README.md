@@ -1,6 +1,6 @@
 # Trimble Connect sample extensions
 
-Eight static Trimble Connect extensions for testing custom manifests and access token consent. They come in two identical sets, so you can test more than one custom extension at a time.
+Twelve static Trimble Connect extensions for testing custom manifests and access token consent. They come in two identical sets, so you can test more than one custom extension at a time.
 
 | Folder | extensionType | Calls `requestPermission("accesstoken")` |
 | --- | --- | --- |
@@ -8,6 +8,10 @@ Eight static Trimble Connect extensions for testing custom manifests and access 
 | `set1/viewer-consent`, `set2/viewer-consent` | `3dviewer` | yes, automatically when the viewer panel is visible |
 | `set1/project-basic`, `set2/project-basic` | `project` | no |
 | `set1/project-consent`, `set2/project-consent` | `project` | yes, automatically when opened from project navigation |
+| `set1/popover-3dviewer`, `set2/popover-3dviewer` | `3dviewer` | no |
+| `set1/popover-project`, `set2/popover-project` | `project` | no |
+
+The popover samples are smoke tests for `extension.configure({ type: "popover", url, id })`. They don't load `shared/extension.js`. **Open popover** configures `./popover.html`, and opening again replaces the popover. **Close popover** sends `url: "remove"`. The popover page itself does not load the Workspace API. Each set uses its own popover `id`.
 
 Every page has a **Token scope** section. It decodes the JWT payload of any access token the page receives and shows `scope` (or `scp`), `aud`, `azp`, `sub`, `iss`, `iat` and `exp`. The claims are also logged to the browser console. A token can arrive from `requestPermission`, from `getPermission`, or from an `extension.accessToken` event. Basic pages never call `requestPermission` or `getPermission`, because in tcweb both can open the consent dialog. They only show a scope if the host pushes a token on its own.
 
@@ -58,13 +62,14 @@ Open http://localhost:8080 for the manifest list. Trimble Connect needs the http
 
 ## Add to Trimble Connect
 
-1. Open the hosted root `index.html`. It lists all 8 manifest URLs with Copy buttons.
+1. Open the hosted root `index.html`. It lists all 12 manifest URLs with Copy buttons.
 2. In a project, go to Settings → Apps & Capabilities → Add custom capability, and paste a manifest URL.
 3. Check each extension:
    - **Project basic:** has a navigation entry and shows no consent dialog.
    - **Project consent:** shows the Allow/Deny dialog when opened from navigation.
    - **Viewer basic:** appears as a 3D viewer panel, with no dialog.
    - **Viewer consent:** shows the dialog when its panel opens.
+   - **Popover 3D viewer / Popover project:** Open popover shows a centered overlay, a second Open replaces it, and Close popover removes it. The project popover is only visible while that extension's page is open.
    - **Set 2:** its extensions appear as separate rows next to Set 1.
 4. To prompt again after Allow or Deny, go to Apps & Capabilities → row menu → **Reset permission**.
 

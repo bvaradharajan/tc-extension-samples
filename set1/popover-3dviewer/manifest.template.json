@@ -1,0 +1,9 @@
+{
+  "url": "{{BASE_URL}}/set1/popover-3dviewer/index.html",
+  "title": "PopoverConfigure3D (Set 1)",
+  "icon": "{{BASE_URL}}/set1/popover-3dviewer/favicon.svg",
+  "infoUrl": "{{BASE_URL}}/set1/popover-3dviewer/index.html",
+  "schemaVersion": "1.0",
+  "description": "3D viewer extension smoke test that opens a popover through extension.configure on button click.",
+  "extensionType": ["3dviewer"]
+}

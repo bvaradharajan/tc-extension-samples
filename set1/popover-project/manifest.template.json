@@ -1,0 +1,9 @@
+{
+  "url": "{{BASE_URL}}/set1/popover-project/index.html",
+  "title": "PopoverConfigureProject (Set 1)",
+  "icon": "{{BASE_URL}}/set1/popover-project/favicon.svg",
+  "infoUrl": "{{BASE_URL}}/set1/popover-project/index.html",
+  "schemaVersion": "1.0",
+  "description": "Project extension smoke test that opens a popover through extension.configure on button click.",
+  "extensionType": ["project"]
+}

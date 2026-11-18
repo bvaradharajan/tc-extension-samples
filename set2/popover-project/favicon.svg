@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Popover configure">
+  <rect width="32" height="32" rx="6" fill="#354052" />
+  <rect x="7" y="8" width="18" height="12" rx="2" fill="#fff" />
+  <path fill="#fff" d="M13 20h6l-3 4z" />
+</svg>

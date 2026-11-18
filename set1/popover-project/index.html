@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PopoverConfigureProject (Set 1)</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="../../shared/styles.css" />
+    <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
+  </head>
+  <body>
+    <h1>PopoverConfigureProject (Set 1)</h1>
+    <p><span class="badge">Project extension</span><span class="badge">extension.configure popover</span></p>
+    <p id="status">Connecting to Trimble Connect…</p>
+    <p class="muted">
+      Click <strong>Open popover</strong> to call <code>extension.configure({ type: "popover", url, id })</code>. Only
+      <code>popover</code> is supported for project extensions, and each extension owns one popover: configuring again replaces it, and
+      <strong>Close popover</strong> sends the <code>"remove"</code> url.
+    </p>
+
+    <button id="openBtn" type="button" disabled>Open popover</button>
+    <button id="closeBtn" type="button" disabled>Close popover</button>
+
+    <pre id="result">Connect, then click Open popover…</pre>
+
+    <script>
+      const POPOVER_ID = "popover_project_example_set1";
+      let API;
+
+      function setResult(message, className) {
+        const resultEl = document.getElementById("result");
+        resultEl.textContent = message;
+        resultEl.className = className || "";
+      }
+
+      function errorMessage(error) {
+        return error && error.message ? error.message : String(error);
+      }
+
+      async function configurePopover(url) {
+        if (!API) {
+          return;
+        }
+        setResult('Calling extension.configure({ type: "popover", url: "' + url + '" })…', "muted");
+        try {
+          const result = await API.extension.configure({ type: "popover", url, id: POPOVER_ID });
+          setResult("extension.configure resolved: " + String(result), result === false ? "error" : "ok");
+        } catch (error) {
+          setResult("extension.configure failed: " + errorMessage(error), "error");
+        }
+      }
+
+      function openPopover() {
+        return configurePopover(new URL("./popover.html", window.location.href).href);
+      }
+
+      function closePopover() {
+        return configurePopover("remove");
+      }
+
+      async function init() {
+        const statusEl = document.getElementById("status");
+        if (typeof TrimbleConnectWorkspace === "undefined") {
+          statusEl.textContent = "Workspace API script failed to load.";
+          statusEl.className = "error";
+          return;
+        }
+        if (window.parent === window) {
+          statusEl.textContent = "Not embedded — add this extension's manifest.json in Trimble Connect to run it.";
+          statusEl.className = "warn";
+          return;
+        }
+        try {
+          API = await TrimbleConnectWorkspace.connect(window.parent, () => {});
+          statusEl.textContent = "Connected via Workspace API.";
+          statusEl.className = "ok";
+          document.getElementById("openBtn").disabled = false;
+          document.getElementById("closeBtn").disabled = false;
+        } catch (error) {
+          statusEl.textContent = "Connect failed — open this extension from a Trimble Connect project tab.";
+          statusEl.className = "error";
+          setResult(errorMessage(error), "error");
+        }
+      }
+
+      document.getElementById("openBtn").addEventListener("click", openPopover);
+      document.getElementById("closeBtn").addEventListener("click", closePopover);
+      init();
+    </script>
+  </body>
+</html>
